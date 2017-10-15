@@ -1,4 +1,4 @@
-//Provides a way for doing the configuration just the way we use the command line.
+// Package confu provides a way for doing the configuration just the way we use the command line.
 package confu
 
 import (
@@ -6,14 +6,14 @@ import (
 	"strings"
 )
 
-//Tokenize prepares a string in a way than can get parsed using a `flag.FlagSet`,
-//from standard Go library.
-//We can have a configuration string with command line argument syntax, anywhere.
-//So essentially there could be a config file  with command line argument syntax
-//and we read it all as a single string. Then it can be used with `flag.FlagSet`
-//to be loaded into the target `struct`.
+// Tokenize prepares a string in a way than can get parsed using a `flag.FlagSet`,
+// from standard Go library.
+// We can have a configuration string with command line argument syntax, anywhere.
+// So essentially there could be a config file  with command line argument syntax
+// and we read it all as a single string. Then it can be used with `flag.FlagSet`
+// to be loaded into the target `struct`.
 //
-//sample usage:
+// sample usage:
 //	input := `--tag --comment="done" --port=8081  --path '/some/path'`
 //	args := Tokenize(input)
 //
@@ -36,10 +36,10 @@ import (
 //	set.Parse(args)
 //	log.Printf("%+v", conf)
 //
-//and the output will be:
+// and the output will be:
 //	{save:false path:/some/path port:8081 tag:true comment:"done"}
 //
-//this function splits the input string based on spaces & new line char will get replaced by space
+// this function splits the input string based on spaces & new line char will get replaced by space
 func Tokenize(stringArgs string) []string {
 	args := sanitizeLines(stringArgs)
 
@@ -104,9 +104,9 @@ func appendIt(slist []string, s string) []string {
 	return append(slist, vstr)
 }
 
-//sample usage:
+// TrimQuote sample usage:
 //	conf.comment = TrimQuote(conf.comment)
-//like when we have and arg of shape --comment="done"
+// like when we have and arg of shape --comment="done" and we want to get done.
 func TrimQuote(s string) string {
 	vstr := strings.TrimSpace(s)
 
